@@ -1,0 +1,8 @@
+{
+  "short_name": "W Project",
+  "name": "cs179g: Senior Project",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
