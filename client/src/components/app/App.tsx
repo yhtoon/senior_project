@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-type numArray = number[];
-interface testResponse {
-    one: number,
-    two: string,
-    three: numArray,
-}
+import { testResponse } from 'types';
 
 const App: React.FC = () => {
 
