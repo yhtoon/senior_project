@@ -4,7 +4,7 @@ import express, {
     Response,
     NextFunction,
 } from 'express';
-import { testResponse } from './types/Types';
+import { testResponse } from 'types';
 
 // npm run dev => runs app in /src
 // npm run build => compiles /src .ts files to .js in /dist
