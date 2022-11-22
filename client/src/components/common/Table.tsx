@@ -139,17 +139,17 @@ const WTable: React.FC = () => {
               </Heading>
             </Stack.Item>
             <Stack.Item>
-            <Pagination
-              label="1"
-              hasPrevious
-              onPrevious={() => {
-                console.log('Previous');
-              }}
-              hasNext
-              onNext={() => {
-                console.log('Next');
-              }}
-            />
+              <Pagination
+                label="1"
+                hasPrevious
+                onPrevious={() => {
+                  console.log('Previous');
+                }}
+                hasNext
+                onNext={() => {
+                  console.log('Next');
+                }}
+              />
             </Stack.Item>
             <Stack.Item>
               <Button primary>
