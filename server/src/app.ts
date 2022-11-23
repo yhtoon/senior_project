@@ -1,10 +1,6 @@
 import express, {
     Application,
-    Request,
-    Response,
-    NextFunction,
 } from 'express';
-import { testResponse } from 'types';
 
 // npm run dev => runs app in /src
 // npm run build => compiles /src .ts files to .js in /dist
@@ -12,10 +8,12 @@ import { testResponse } from 'types';
 
 const app: Application = express();
 
-app.get('/api', (req: Request, res: Response, next: NextFunction) => {
-    res.json({"one": 1, "two": "two", "three": [3, 3, 3]} as testResponse);
-});
-
 app.listen(6969, () => {
     console.log("sheeesh");
 });
+
+// Debugging common errors (windows):
+
+// 1. If port is in use, we need to kill the PID
+// netstat -ano | findstr :6969
+// taskkill /PID <PID> /F
