@@ -8,19 +8,59 @@ AWS.config.update({
 });
 
 export const dynamoClient = new AWS.DynamoDB.DocumentClient();
-const TABLE_NAME = "dynamoDB_test";
 
-export const getCandidates = async () => {
+export const getAnalyticsCommieTable = async (CAND_ID: string) => {
   const params = {
-    TableName: TABLE_NAME,
+    TableName: "AnalyticsCommieTable",
+    Key: { CAND_ID },
   };
-  return await dynamoClient.scan(params).promise();
+  return await dynamoClient.get(params).promise();
 };
 
-export const getCandidatesByID = async (id: string) => {
+export const getAnalyticsIndividualTable = async (CAND_ID: string) => {
   const params = {
-    TableName: TABLE_NAME,
-    Key: { id },
+    TableName: "AnalyticsIndividualTable",
+    Key: { CAND_ID },
+  };
+  return await dynamoClient.get(params).promise();
+};
+
+export const getAnalyticsStateTable = async (CAND_ID: string) => {
+  const params = {
+    TableName: "AnalyticsStateTable",
+    Key: { CAND_ID },
+  };
+  return await dynamoClient.get(params).promise();
+};
+
+export const getCommitteeInfoTable = async (COMM_ID: string) => {
+  const params = {
+    TableName: "CommitteeInfoTable",
+    Key: { COMM_ID },
+  };
+  return await dynamoClient.get(params).promise();
+};
+
+export const getCompetitorTable = async (COMP_ID: string) => {
+  const params = {
+    TableName: "CompetitorTable",
+    Key: { COMP_ID },
+  };
+  return await dynamoClient.get(params).promise();
+};
+
+export const getDoraTheExplorerTable = async (CAND_ID: string) => {
+  const params = {
+    TableName: "DoraTheExplorerTable",
+    Key: { CAND_ID },
+  };
+  return await dynamoClient.get(params).promise();
+};
+
+export const getexploreFiltered = async (CID: string) => {
+  const params = {
+    TableName: "exploreFiltered",
+    Key: { CID },
   };
   return await dynamoClient.get(params).promise();
 };
