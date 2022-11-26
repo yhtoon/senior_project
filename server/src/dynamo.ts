@@ -33,9 +33,9 @@ export const getAnalyticsStateTable = async (CAND_ID: string) => {
   return await dynamoClient.get(params).promise();
 };
 
-export const getCommitteeInfoTable = async (COMM_ID: string) => {
+export const getCommieInfoTable = async (COMM_ID: string) => {
   const params = {
-    TableName: "CommitteeInfoTable",
+    TableName: "CommieInfoTable",
     Key: { COMM_ID },
   };
   return await dynamoClient.get(params).promise();
