@@ -49,7 +49,8 @@ const CommieTable: React.FC<CommieTableProps> = ({
 
   // sets the current table items
   const rowMarkup = curryItems && curryItems.map(
-    ({
+    (
+      {
         CAND_ID,
         CAND_NAME,
         CAND_OFFICE,
@@ -57,14 +58,15 @@ const CommieTable: React.FC<CommieTableProps> = ({
         CAND_OFFICE_ST,
         CAND_PTY_AFFILIATION,
         DONATION_AMT
-      }, index) => (
+      }, index
+    ) => (
       <IndexTable.Row
         id={CAND_ID}
         key={CAND_ID}
         position={index}
       >
         <IndexTable.Cell>{index + 1 + (curryPage * 10 - 10)}</IndexTable.Cell>
-        <IndexTable.Cell>{DONATION_AMT}</IndexTable.Cell>
+        <IndexTable.Cell>{'$' + DONATION_AMT}</IndexTable.Cell>
 
         {/* TODO: Link to analytics page for this candidate */}
         <IndexTable.Cell>
