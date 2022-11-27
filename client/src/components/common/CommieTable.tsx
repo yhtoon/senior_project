@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
-// import {
-//   testResponse,
-// } from 'types';
 import {
   IndexTable,
-  Button, 
   Box,
   Card,
+  EmptySearchResult,
   Heading,
   Pagination,
-  RadioButton,
   Stack,
   Text,
   TextStyle,
@@ -25,26 +21,34 @@ const CommieTable: React.FC<CommieTableProps> = ({
   COMM_ID,
 }) => {
   const [tableItems, setTableItems] = useState<commieInfoItem[]>();
-  const [pageTotal, setPageTotal] = useState<number>(); // * pagination not done
+  const [curryItems, setCurryItems] = useState<commieInfoItem[]>();
+  const [pageTotal, setPageTotal] = useState<number>(1);
   const [curryPage, setCurryPage] = useState<number>(1);
   
+  // gets items to display from dynamoDB
   useEffect(() => {
     fetch(`/getCommieInfo/${COMM_ID}`).then(
       response => response.json()
     ).then(
       data => { 
+        setPageTotal(Math.floor(data.Item.committeeTable.length / 10) + ((data.Item.committeeTable.length % 10) ? 1 : 0));
         setTableItems(data.Item.committeeTable);
-        setPageTotal(tableItems ? tableItems.length / 10 + tableItems.length % 3 ? 1 : 0 : 0); // *
       }
     )
   }, [COMM_ID]);
+  
+  // pagination: updates the current 10 of all items to display
+  useEffect(() => {
+    setCurryItems(tableItems?.slice((curryPage - 1) * 10, (curryPage - 1) * 10 + 10));
+  }, [curryPage, tableItems]);
 
   const resourceName = {
-    singular: 'customer',
-    plural: 'customers',
+    singular: 'candidate',
+    plural: 'candidates',
   };
-  
-  const rowMarkup = tableItems && tableItems.map(
+
+  // sets the current table items
+  const rowMarkup = curryItems && curryItems.map(
     ({
         CAND_ID,
         CAND_NAME,
@@ -59,17 +63,28 @@ const CommieTable: React.FC<CommieTableProps> = ({
         key={CAND_ID}
         position={index}
       >
-        <IndexTable.Cell>{index + 1}</IndexTable.Cell>
+        <IndexTable.Cell>{index + 1 + (curryPage * 10 - 10)}</IndexTable.Cell>
         <IndexTable.Cell>{DONATION_AMT}</IndexTable.Cell>
+
+        {/* TODO: Link to analytics page for this candidate */}
         <IndexTable.Cell>
           <TextStyle variation="strong">{CAND_NAME}</TextStyle>
         </IndexTable.Cell>
+
         <IndexTable.Cell>{CAND_PTY_AFFILIATION}</IndexTable.Cell>
         <IndexTable.Cell>{CAND_OFFICE}</IndexTable.Cell>
         <IndexTable.Cell>{CAND_OFFICE_ST}</IndexTable.Cell>
         <IndexTable.Cell>{CAND_OFFICE_DISTRICT}</IndexTable.Cell>
       </IndexTable.Row>
     ),
+  );
+  
+  // if table is empty
+  const emptyStateMarkup = (
+    <EmptySearchResult
+      title={'No candidates found'}
+      description={'Committee did not donate within the select timeframe.'}
+    />
   );
 
   return (
@@ -85,17 +100,15 @@ const CommieTable: React.FC<CommieTableProps> = ({
               </Heading>
             </Stack.Item>
             <Stack.Item>
-              <Pagination //*
-                label="1"
-                hasPrevious
+              <Pagination
+                label={curryPage}
+                hasPrevious={curryPage > 1}
                 onPrevious={() => {
-                  setCurryPage(curryPage - 1)
-                  console.log('Previous');
+                  setCurryPage(curryPage - 1);
                 }}
-                hasNext
+                hasNext={curryPage < pageTotal}
                 onNext={() => {
-                  setCurryPage(curryPage + 1)
-                  console.log('Next');
+                  setCurryPage(curryPage + 1);
                 }}
               />
             </Stack.Item>
@@ -105,6 +118,7 @@ const CommieTable: React.FC<CommieTableProps> = ({
           resourceName={resourceName}
           itemCount={tableItems ? tableItems.length : 0}
           selectable={false}
+          emptyState={emptyStateMarkup}
           headings={[
             {title: 'Rank'},
             {title: 'Donation'},
