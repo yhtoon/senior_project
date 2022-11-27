@@ -18,16 +18,17 @@ const app: Application = express();
 
 // call commie table
 
-// app.get('/test', async (req: Request, res: Response) => {
-//     const id: string = req.params.id;
-//     try {
-//       const candidates: CommieInfoResponse = await getCommieInfoTable("C00818278");
-//       res.json(candidates);
-//     } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ err: 'Something went wrong' });
-//     }
-//   });
+app.get('/getCommieInfo/:id', async (req: Request, res: Response) => {
+    const id: string = req.params.id;
+    try {
+      const candidates: CommieInfoResponse = await getCommieInfoTable(id);
+      res.json(candidates);
+      console.log(JSON.stringify(candidates))
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ err: 'Something went wrong' });
+    }
+  });
 
 app.listen(6969, () => {
     console.log("sheeesh");
