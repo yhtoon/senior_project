@@ -94,7 +94,7 @@ const CompetitorTable: React.FC<CompetitorTableProps> = ({
   // if table is empty
   const emptyStateMarkup = (
     <EmptySearchResult
-      title={'No candidates found'}
+      title={'No candidate found'}
       description={'This should be possible lmao'}
     />
   );
@@ -115,7 +115,7 @@ const CompetitorTable: React.FC<CompetitorTableProps> = ({
           <Stack>
             <Stack.Item fill>
               <Heading>
-                <Text variant="heading2xl" as="h1" truncate>
+                <Text variant="headingXl" as="h1" truncate>
                     Candidates ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>

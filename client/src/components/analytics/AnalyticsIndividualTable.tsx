@@ -11,31 +11,31 @@ import {
   TextStyle,
 } from '@shopify/polaris';
 
-import {commieInfoItem} from 'types';
+import {analyticsIndividualItem} from 'types';
 
-interface CommieTableProps {
-  COMM_ID: string,
+interface AnalyticsIndividualTableProps {
+  CAND_ID: string,
 }
 
-const CommieTable: React.FC<CommieTableProps> = ({
-  COMM_ID,
+const AnalyticsIndividualTable: React.FC<AnalyticsIndividualTableProps> = ({
+  CAND_ID,
 }) => {
-  const [tableItems, setTableItems] = useState<commieInfoItem[]>();
-  const [curryItems, setCurryItems] = useState<commieInfoItem[]>();
+  const [tableItems, setTableItems] = useState<analyticsIndividualItem[]>();
+  const [curryItems, setCurryItems] = useState<analyticsIndividualItem[]>();
   const [pageTotal, setPageTotal] = useState<number>(1);
   const [curryPage, setCurryPage] = useState<number>(1);
   
   // gets items to display from dynamoDB
   useEffect(() => {
-    fetch(`/getCommieInfo/${COMM_ID}`).then(
+    fetch(`/getAnalyticsIndividual/${CAND_ID}`).then(
       response => response.json()
     ).then(
       data => { 
-        setPageTotal(Math.floor(data.Item.committeeTable.length / 10) + ((data.Item.committeeTable.length % 10) ? 1 : 0));
-        setTableItems(data.Item.committeeTable);
+        setPageTotal(Math.floor(data.Item.individualTable.length / 10) + ((data.Item.individualTable.length % 10) ? 1 : 0));
+        setTableItems(data.Item.individualTable);
       }
     )
-  }, [COMM_ID]);
+  }, [CAND_ID]);
   
   // pagination: updates the current 10 of all items to display
   useEffect(() => {
@@ -43,21 +43,20 @@ const CommieTable: React.FC<CommieTableProps> = ({
   }, [curryPage, tableItems]);
 
   const resourceName = {
-    singular: 'candidate',
-    plural: 'candidates',
+    singular: 'Top individual donor',
+    plural: 'Top individual donors',
   };
 
   // sets the current table items
   const rowMarkup = curryItems && curryItems.map(
     (
       {
-        CAND_ID,
-        CAND_NAME,
-        CAND_OFFICE,
-        CAND_OFFICE_DISTRICT,
-        CAND_OFFICE_ST,
-        CAND_PTY_AFFILIATION,
-        DONATION_AMT
+        CITY,
+        INDIVIDUAL,
+        OCCUPATION,
+        STATE,
+        TOTAL,
+        ZIP_CODE,
       }, index
     ) => (
       <IndexTable.Row
@@ -66,17 +65,17 @@ const CommieTable: React.FC<CommieTableProps> = ({
         position={index}
       >
         <IndexTable.Cell>{index + 1 + (curryPage * 10 - 10)}</IndexTable.Cell>
-        <IndexTable.Cell>{'$' + DONATION_AMT}</IndexTable.Cell>
+        <IndexTable.Cell>{'$' + TOTAL}</IndexTable.Cell>
 
         {/* TODO: Link to analytics page for this candidate */}
         <IndexTable.Cell>
-          <TextStyle variation="strong">{CAND_NAME}</TextStyle>
+          <TextStyle variation="strong">{INDIVIDUAL}</TextStyle>
         </IndexTable.Cell>
 
-        <IndexTable.Cell>{CAND_PTY_AFFILIATION}</IndexTable.Cell>
-        <IndexTable.Cell>{CAND_OFFICE}</IndexTable.Cell>
-        <IndexTable.Cell>{CAND_OFFICE_ST}</IndexTable.Cell>
-        <IndexTable.Cell>{CAND_OFFICE_DISTRICT}</IndexTable.Cell>
+        <IndexTable.Cell>{OCCUPATION}</IndexTable.Cell>
+        <IndexTable.Cell>{CITY}</IndexTable.Cell>
+        <IndexTable.Cell>{STATE}</IndexTable.Cell>
+        <IndexTable.Cell>{ZIP_CODE}</IndexTable.Cell>
       </IndexTable.Row>
     ),
   );
@@ -84,20 +83,20 @@ const CommieTable: React.FC<CommieTableProps> = ({
   // if table is empty
   const emptyStateMarkup = (
     <EmptySearchResult
-      title={'No candidate found'}
-      description={'Committee did not donate within the select timeframe.'}
+      title={'No individual found'}
+      description={'No individual donated :('}
     />
   );
 
   return (
-    <Box background="surface-hovered-dark" borderRadius="2" padding="3" shadow="card">
+    <Box background="surface-hovered-dark" borderRadius="2" paddingTop="3" shadow="card">
       <Card>
         <Box padding="3">
           <Stack>
             <Stack.Item fill>
               <Heading>
                 <Text variant="headingXl" as="h1" truncate>
-                    Candidates ({tableItems ? tableItems.length : 0})
+                    Top individual donors ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>
             </Stack.Item>
@@ -125,10 +124,10 @@ const CommieTable: React.FC<CommieTableProps> = ({
             {title: 'Rank'},
             {title: 'Donations'},
             {title: 'Name'},
-            {title: 'Party'},
-            {title: 'Office'},
+            {title: 'Occupation'},
+            {title: 'City'},
             {title: 'State'},
-            {title: 'District'},
+            {title: 'ZIP code'},
           ]}
           loading={!tableItems}
         >
@@ -139,4 +138,4 @@ const CommieTable: React.FC<CommieTableProps> = ({
   );
 }
 
-export default CommieTable;
+export default AnalyticsIndividualTable;

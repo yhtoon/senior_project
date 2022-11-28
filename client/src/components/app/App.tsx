@@ -6,6 +6,7 @@ import {
 } from '@shopify/polaris';
 import CommieTable from '../commie/CommieTable';
 import CompetitorTable from '../competitor/CompetitorTable';
+import AnalyticsTable from '../analytics/AnalyticsTable';
 
 const App: React.FC = () => {
   const [competitor, setCompetitor] = useState<string>('');
@@ -15,14 +16,17 @@ const App: React.FC = () => {
   }, [competitor])
 
   return <AppProvider i18n={enTranslations}>
-    <div>
+    <AnalyticsTable
+      CAND_ID='H2AZ09191'
+    />
+    {/* <div>
       {competitor}
     </div>
     <CompetitorTable
       COMP_ID='2022HOH10'
       CAND_ID='H2OH10252'
       getCompetitorID={setCompetitor}
-    />
+    /> */}
     {/* <CommieTable 
       COMM_ID='C00545236'
     /> */}
