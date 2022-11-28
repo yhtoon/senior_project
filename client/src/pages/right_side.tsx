@@ -14,11 +14,14 @@ import React, { useState, useCallback, useEffect } from "react";
 import CandInfo from "../components/common/CandInfo";
 import CommieInfo from "../components/common/CommieInfo";
 
-interface LeftProps {
-  flag: string
+type name = "commie" | "competitor";
+
+interface RightProps {
+  id: string
+  flag: name
 }
 
-const Right: React.FC = ({flag}) => {
+const Right: React.FC<RightProps> = ({id, flag}) => {
   return (
     <Stack.Item>
       <Card>

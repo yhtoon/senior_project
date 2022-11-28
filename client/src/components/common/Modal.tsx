@@ -15,12 +15,12 @@ import {
   import Right from "../../pages/right_side";
 
 type name = "commie" | "competitor";
-interface ModalProp {
-  id: string;
-  flag: name;
+interface ModalProps {
+  id: string
+  flag: name
 }
 
-const ModalInfo: React.FC<ModalProp> = ({ id, flag }) => {
+const ModalInfo: React.FC<ModalProps> = ({ id, flag }) => {
   const [active, setActive] = useState(true);
   const [checked, setChecked] = useState(false);
 
@@ -41,8 +41,8 @@ const ModalInfo: React.FC<ModalProp> = ({ id, flag }) => {
       >
         <Modal.Section>
           <Stack wrap={false} distribution="fillEvenly">
-            <Left id={id}/>
-            <Right flag={flag}/>
+            <Left id={id} flag={flag}/>
+            <Right id={id} flag={flag}/>
           </Stack>
         </Modal.Section>
       </Modal>
