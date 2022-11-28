@@ -1,12 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import WTable from '../components/common/Table';
+import {
+  Button,
+  Modal,
+  Stack,
+  DropZone,
+  Checkbox,
+  Badge,
+  Text,
+  Card,
+  DataTable,
+  TextContainer
+} from "@shopify/polaris";
+import Title from "../components/common/Title";
+import CompetitorTable from "../components/competitor/CompetitorTable";
+import React, { useState, useCallback, useEffect } from "react";
+import CommieTable from "../components/commie/CommieTable";
 
-const Left: React.FC = () => {
-  return (
-    <div style={{ minHeight: '50%', maxHeight: '50%', maxWidth: '100%', backgroundColor: 'green' }}>
-      <WTable></WTable>
-    </div>
-  );
+interface LeftProps {
+  id: string
 }
+
+const Left: React.FC<LeftProps> = ({id}) => {
+
+  return (
+    <Stack.Item>
+      <Title />
+      <Card>
+        <CommieTable COMM_ID={id}  />
+      </Card>
+    </Stack.Item>
+  );
+};
 
 export default Left;

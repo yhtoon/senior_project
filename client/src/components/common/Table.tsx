@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  testResponse,
-} from 'types';
+
 import {
   IndexTable,
   Button, 
@@ -16,17 +14,17 @@ import {
 } from '@shopify/polaris';
 
 const WTable: React.FC = () => {
-  const [stuff, setStuff] = useState<testResponse>();
+  // const [stuff, setStuff] = useState<testResponse>();
 
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setStuff(data);
-      }
-    )
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api").then(
+  //     response => response.json()
+  //   ).then(
+  //     data => {
+  //       setStuff(data);
+  //     }
+  //   )
+  // }, []);
 
   const customers = [
       {

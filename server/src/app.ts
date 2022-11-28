@@ -2,13 +2,15 @@ import {
   getAnalyticsCommieTable,
   getAnalyticsIndividualTable,
   getAnalyticsStateTable,
-  getCommieInfoTable } from "./dynamo";
+  getCommieInfoTable,
+  getCompetitorTable,
+} from "./dynamo";
 import express, {
   Application,
   Request,
   Response,
 } from 'express';
-import { CommieInfoResponse } from 'types';
+import { CommieInfoResponse, CompetitorResponse } from 'types';
 
 // npm run dev => runs app in /src
 // npm run build => compiles /src .ts files to .js in /dist
@@ -18,16 +20,29 @@ const app: Application = express();
 
 // call commie table
 
-// app.get('/test', async (req: Request, res: Response) => {
-//     const id: string = req.params.id;
-//     try {
-//       const candidates: CommieInfoResponse = await getCommieInfoTable("C00818278");
-//       res.json(candidates);
-//     } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ err: 'Something went wrong' });
-//     }
-//   });
+app.get('/getCommieInfo/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const candidates: CommieInfoResponse = await getCommieInfoTable(id);
+    res.json(candidates);
+    console.log(JSON.stringify(candidates))
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+
+// app.get('/getCompetitor/:id', async (req: Request, res: Response) => {
+//   const id: string = req.params.id;
+//   try {
+//     const candidates: CompetitorResponse = await getCompetitorTable(id);
+//     res.json(candidates);
+//     console.log(JSON.stringify(candidates))
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ err: 'Something went wrong' });
+//   }
+// });
 
 app.listen(6969, () => {
     console.log("sheeesh");
