@@ -42,7 +42,7 @@ const ModalInfo: React.FC<ModalProp> = ({ id, flag }) => {
         <Modal.Section>
           <Stack wrap={false} distribution="fillEvenly">
             <Left id={id}/>
-            <Right />
+            <Right flag={flag}/>
           </Stack>
         </Modal.Section>
       </Modal>
