@@ -8,27 +8,24 @@ import CommieTable from '../commie/CommieTable';
 import CompetitorTable from '../competitor/CompetitorTable';
 
 const App: React.FC = () => {
-
-  // const [stuff, setStuff] = useState<testResponse>();
-  // useEffect(() => {
-  //   fetch("/api").then(
-  //     response => response.json()
-  //   ).then(
-  //     data => {
-  //       setStuff(data);
-  //     }
-  //   )
-  // }, []);
-
-  // console.log(stuff);
+  const [competitor, setCompetitor] = useState<string>('');
+  
+  useEffect(() => {
+    console.log(competitor)
+  }, [competitor])
 
   return <AppProvider i18n={enTranslations}>
-    <CommieTable
-      COMM_ID='C00545236'
-    />
+    <div>
+      {competitor}
+    </div>
     <CompetitorTable
-      COMP_ID='2022HCA17'
+      COMP_ID='2022HOH10'
+      CAND_ID='H2OH10252'
+      getCompetitorID={setCompetitor}
     />
+    {/* <CommieTable 
+      COMM_ID='C00545236'
+    /> */}
   </AppProvider>;
 }
 

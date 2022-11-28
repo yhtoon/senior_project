@@ -14,7 +14,7 @@ import {
 import {commieInfoItem} from 'types';
 
 interface CommieTableProps {
-  COMM_ID: string
+  COMM_ID: string,
 }
 
 const CommieTable: React.FC<CommieTableProps> = ({
