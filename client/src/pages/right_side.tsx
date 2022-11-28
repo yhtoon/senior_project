@@ -27,15 +27,13 @@ const Right: React.FC<RightProps> = ({id, flag}) => {
       <Card>
         <TextContainer spacing="loose">
           <p>
-            rand
+            gem
           </p>
-          <p>
-            text hr
-          </p>
+          
         </TextContainer>
       </Card>
-      
-      {flag} = "candidate" ? <CandInfo/> : <CommieInfo/>
+      {(flag === 'commie') && <CommieInfo COMM_ID={id}/>}
+      {(flag === 'competitor') && <CommieInfo COMM_ID={id}/>}
       
     </Stack.Item>
   );

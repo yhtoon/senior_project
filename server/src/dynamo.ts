@@ -65,3 +65,11 @@ export const getexploreFiltered = async (CID: string) => {
   };
   return await dynamoClient.get(params).promise();
 };
+
+export const getCommieMaster = async (COMM_ID: string) => {
+  const params = {
+    TableName: "CommunistParty",
+    Key: { COMM_ID },
+  };
+  return await dynamoClient.get(params).promise();
+};

@@ -27,7 +27,7 @@ const Left: React.FC<LeftProps> = ({id}) => {
 
   return (
     <Stack.Item>
-      <Title />
+      <Title COMM_ID={id}/>
       <Card>
         <CommieTable COMM_ID={id}  />
       </Card>

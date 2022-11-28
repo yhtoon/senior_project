@@ -11,8 +11,12 @@ import {
     TextContainer
   } from "@shopify/polaris";
   import React, { useState, useCallback, useEffect } from "react";
-  
-  const Title: React.FC = () => {
+  import {CommieInfoModal} from 'types';
+
+  interface TitleProps {
+    COMM_ID: string
+  }
+  const Title: React.FC<TitleProps> = ({COMM_ID}) => {
     return (
       <Stack.Item>
         <TextContainer>

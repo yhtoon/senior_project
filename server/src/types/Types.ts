@@ -6,9 +6,13 @@ export type name = string;
 export type office = string;
 export type party = string;
 export type state = string;
-
+export type city = string;
 export type ici = string; 
 export type year = string;
+export type design = string;
+export type org = string;
+export type cmttp = string;
+
 
 // table schemas
 export interface commieInfoItem {
@@ -57,6 +61,19 @@ export interface commieInfoItem {
 export interface CommieInfoResponse {
   COMM_ID: id,
   committeeTable: commieInfoItem[],
+}
+
+export interface CommieInfoModal {
+  COMM_ID: id,
+  CMTE_NM: name, 
+  TRES_NM: name, 
+  CMTE_CITY: city, 
+  CMTE_ST: state, 
+  CMTE_DSGN: design, 
+  CMTE_TP: cmttp, 
+  CMTE_PTY_AFFILIATION: party, 
+  ORG_TP: org,
+  CONNECTED_ORG_NM: name, 
 }
 
 export interface CAND_INFO {

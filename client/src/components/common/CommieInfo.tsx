@@ -12,22 +12,35 @@ import {
   } from "@shopify/polaris";
   import React, { useState, useCallback, useEffect } from "react";
   
-  // check flag in right.. separate right components dependent on 
-  const CommieInfo: React.FC = () => {
+  import {CommieInfoModal} from 'types';
+
+  
+  interface CommieInfoProps {
+    COMM_ID: string
+  }
+
+  const CommieInfo: React.FC<CommieInfoProps> = ({COMM_ID}) => {
+
+    const [CommieMaster, setCommieMaster] = useState<CommieInfoModal>();
+
+    useEffect(() => {
+      fetch(`/getCommieMaster/${COMM_ID}`).then(
+        response => response.json()
+      ).then(
+        data => { 
+          setCommieMaster(data.Item);
+        }
+      )
+    }, [COMM_ID]);
+//data is response and item holds whats from response - note forself 
     return (
       <Stack.Item>
         <Card>
           <TextContainer spacing="loose">
             <p>
-              Manage your Shopify store on-the-go with real-time notifications,
-              access to your dashboard, and order management, all from your
-              smartphone.
+              what goes here
             </p>
-            <p>
-              Shopify POS is the fastest and easiest way to start accepting Visa,
-              Mastercard, American Express, and Discover right from your
-              smartphone or tablet.
-            </p>
+            
           </TextContainer>
         </Card>
         <Card>
@@ -38,25 +51,55 @@ import {
             <Text variant="headingSm" as="h6">
               Committee ID
             </Text>
-            Committee ID here
+            {COMM_ID} 
             <p>
               <Text variant="headingSm" as="h6">
-                Committee Name
+              Committee Name
               </Text>
             </p>
-            <p>Committee Name here</p>
+            <p>  {CommieMaster ? CommieMaster.CMTE_NM  : ""} </p>
             <p>
               <Text variant="headingSm" as="h6">
                 Treasurer's Name
               </Text>
             </p>
-            <p>Treasurer's Name here</p>
+            <p>{CommieMaster ? CommieMaster.TRES_NM  : ""}</p>
             <p>
               <Text variant="headingSm" as="h6">
                 Location
               </Text>
             </p>
-            <p>Location here</p>
+            <p>{CommieMaster ? (CommieMaster.CMTE_CITY, CommieMaster.CMTE_ST)  : ""}</p>
+            <p>
+              <Text variant="headingSm" as="h6">
+                Committee Design
+              </Text>
+            </p>
+            <p>{CommieMaster ? CommieMaster.CMTE_DSGN : ""}</p>
+            <p>
+              <Text variant="headingSm" as="h6">
+                Committee Type
+              </Text>
+            </p>
+            <p>{CommieMaster ? CommieMaster.CMTE_TP : ""}</p>
+            <p>
+              <Text variant="headingSm" as="h6">
+                Committee Party Affiliation
+              </Text>
+            </p>
+            <p>{CommieMaster ? CommieMaster.CMTE_PTY_AFFILIATION : ""}</p>
+            <p>
+              <Text variant="headingSm" as="h6">
+                Organization Type
+              </Text>
+            </p>
+            <p>{CommieMaster ? CommieMaster.ORG_TP : ""}</p>
+            <p>
+              <Text variant="headingSm" as="h6">
+                Organization Type
+              </Text>
+            </p>
+            <p>{CommieMaster ? CommieMaster.CONNECTED_ORG_NM : ""}</p>
           </Card.Section>
         </Card>
       </Stack.Item>

@@ -13,6 +13,7 @@ import {
   import "@shopify/polaris/build/esm/styles.css";
   import Left from "../../pages/left_side";
   import Right from "../../pages/right_side";
+  import {CommieInfoModal} from 'types';
 
 type name = "commie" | "competitor";
 interface ModalProps {
@@ -23,7 +24,17 @@ interface ModalProps {
 const ModalInfo: React.FC<ModalProps> = ({ id, flag }) => {
   const [active, setActive] = useState(true);
   const [checked, setChecked] = useState(false);
+  const [CommieMaster, setCommieMaster] = useState<CommieInfoModal>();
 
+    useEffect(() => {
+      fetch(`/getCommieMaster/${id}`).then(
+        response => response.json()
+      ).then(
+        data => { 
+          setCommieMaster(data.Item);
+        }
+      )
+    }, [id]);
   const toggleActive = useCallback(() => setActive((active) => !active), []);
 
   //const handleCheckbox = useCallback((value) => setChecked(value), []);
@@ -37,7 +48,7 @@ const ModalInfo: React.FC<ModalProps> = ({ id, flag }) => {
         activator={activator}
         open={active}
         onClose={toggleActive}
-        title="Committee Name Here"
+        title={CommieMaster ? CommieMaster.CMTE_NM  : ""}
       >
         <Modal.Section>
           <Stack wrap={false} distribution="fillEvenly">

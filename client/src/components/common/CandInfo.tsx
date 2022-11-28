@@ -12,6 +12,8 @@ import {
   } from "@shopify/polaris";
   import React, { useState, useCallback, useEffect } from "react";
   
+
+  
   const CandInfo: React.FC = () => {
     return (
         <Card>
