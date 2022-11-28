@@ -5,13 +5,14 @@ import {
   getCommieInfoTable,
   getCompetitorTable,
   getCommieMaster,
+  getCandidateMaster,
 } from "./dynamo";
 import express, {
   Application,
   Request,
   Response,
 } from 'express';
-import { CommieInfoResponse, CompetitorResponse, CommieInfoModal } from 'types';
+import { CommieInfoResponse, CompetitorResponse, CommieInfoModal, CAND_INFO } from 'types';
 
 // npm run dev => runs app in /src
 // npm run build => compiles /src .ts files to .js in /dist
@@ -39,6 +40,18 @@ app.get('/getCommieMaster/:id', async (req: Request, res: Response) => {
     const committees: CommieInfoModal = await getCommieMaster(id);
     res.json(committees);
     console.log(JSON.stringify(committees))
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+
+app.get('/getCandidateMaster/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const candidate: CAND_INFO = await getCandidateMaster(id);
+    res.json(candidate);
+    console.log(JSON.stringify(candidate))
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });

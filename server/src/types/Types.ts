@@ -85,6 +85,7 @@ export interface CAND_INFO {
   CAND_OFFICE: office,
   CAND_OFFICE_DISTRICT: district, 
   CAND_ELECTION_YR: year, 
+  CAND_PTY_AFFILIATION: party,
 }
 
 export interface exploreResp {
@@ -99,3 +100,4 @@ export interface doraResp {
     [key: string]: CAND_INFO
 };
 }
+

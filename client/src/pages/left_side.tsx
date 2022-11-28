@@ -23,13 +23,15 @@ interface LeftProps {
   flag: name
 }
 
-const Left: React.FC<LeftProps> = ({id}) => {
+const Left: React.FC<LeftProps> = ({id, flag}) => {
 
   return (
     <Stack.Item>
-      <Title COMM_ID={id}/>
+      {(flag === 'commie') && <Title id={id} flag={flag} />}
+      {(flag === 'competitor') && <Title id={id} flag={flag}/>}
       <Card>
-        <CommieTable COMM_ID={id}  />
+      {(flag === 'commie') && <CommieTable COMM_ID={id} />}
+      {(flag === 'competitor') && <CompetitorTable COMP_ID={id}/>}
       </Card>
     </Stack.Item>
   );

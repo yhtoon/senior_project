@@ -73,3 +73,11 @@ export const getCommieMaster = async (COMM_ID: string) => {
   };
   return await dynamoClient.get(params).promise();
 };
+
+export const getCandidateMaster = async (CID: string) => {
+  const params = {
+    TableName: "DoraTheExplorerTable",
+    Key: { CID },
+  };
+  return await dynamoClient.get(params).promise();
+};

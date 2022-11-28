@@ -33,7 +33,7 @@ const Right: React.FC<RightProps> = ({id, flag}) => {
         </TextContainer>
       </Card>
       {(flag === 'commie') && <CommieInfo COMM_ID={id}/>}
-      {(flag === 'competitor') && <CommieInfo COMM_ID={id}/>}
+      {(flag === 'competitor') && <CandInfo COMP_ID={id}/>}
       
     </Stack.Item>
   );

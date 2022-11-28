@@ -34,15 +34,7 @@ import {
     }, [COMM_ID]);
 //data is response and item holds whats from response - note forself 
     return (
-      <Stack.Item>
-        <Card>
-          <TextContainer spacing="loose">
-            <p>
-              what goes here
-            </p>
-            
-          </TextContainer>
-        </Card>
+      <Stack.Item>         
         <Card>
           <Text variant="headingMd" as="h6">
             Committee Information
@@ -69,7 +61,7 @@ import {
                 Location
               </Text>
             </p>
-            <p>{CommieMaster ? (CommieMaster.CMTE_CITY, CommieMaster.CMTE_ST)  : ""}</p>
+            <p>{CommieMaster ? (CommieMaster.CMTE_CITY + "," + CommieMaster.CMTE_ST)  : ""}</p>
             <p>
               <Text variant="headingSm" as="h6">
                 Committee Design
