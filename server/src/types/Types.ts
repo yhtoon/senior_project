@@ -12,6 +12,34 @@ export type year = string;
 export type design = string;
 export type org = string;
 export type cmttp = string;
+export type heatmap = number[];
+export type zipcode = string;
+export type entity = string;
+export type occupation = string;
+
+
+export interface analyticsCommieItem {
+  CMTE_NM: name,
+  CMTID_DONOR: id,
+  ENTITY_TP: entity,
+  TOTAL: green,
+}
+
+export interface analyticsIndividualItem {
+  CITY: city,
+  INDIVIDUAL: name,
+  OCCUPATION: occupation,
+  STATE: state,
+  TOTAL: green,
+  ZIP_CODE: zipcode,
+}
+
+export interface analyticsStateItem {
+  COMMITTEE: green,
+  INDIVIDUAL: green,
+  STATE: state,
+  TOTAL: green,
+}
 
 
 // table schemas
@@ -100,4 +128,30 @@ export interface doraResp {
     [key: string]: CAND_INFO
 };
 }
+// DynamoDB API responses
+export interface AnalyticsCommieResponse {
+  CAND_ID: id,
+  committeeTable: analyticsCommieItem[],
+  heatmap: heatmap[],
+}
 
+export interface AnalyticsIndividualResponse {
+  CAND_ID: id,
+  heatmap: heatmap[],
+  individualTable: analyticsIndividualItem[],
+}
+
+export interface AnalyticsStateResponse {
+  CAND_ID: id,
+  stateTable: analyticsStateItem[],
+}
+
+export interface CommieInfoResponse {
+  COMM_ID: id,
+  committeeTable: commieInfoItem[],
+}
+
+export interface CompetitorResponse {
+  COMP_ID: id,
+  committeeTable: competitorItem[],
+}

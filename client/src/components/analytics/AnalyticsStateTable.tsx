@@ -11,31 +11,31 @@ import {
   TextStyle,
 } from '@shopify/polaris';
 
-import {commieInfoItem} from 'types';
+import {analyticsStateItem} from 'types';
 
-interface CommieTableProps {
-  COMM_ID: string,
+interface AnalyticsStateTableProps {
+  CAND_ID: string,
 }
 
-const CommieTable: React.FC<CommieTableProps> = ({
-  COMM_ID,
+const AnalyticsStateTable: React.FC<AnalyticsStateTableProps> = ({
+  CAND_ID,
 }) => {
-  const [tableItems, setTableItems] = useState<commieInfoItem[]>();
-  const [curryItems, setCurryItems] = useState<commieInfoItem[]>();
+  const [tableItems, setTableItems] = useState<analyticsStateItem[]>();
+  const [curryItems, setCurryItems] = useState<analyticsStateItem[]>();
   const [pageTotal, setPageTotal] = useState<number>(1);
   const [curryPage, setCurryPage] = useState<number>(1);
   
   // gets items to display from dynamoDB
   useEffect(() => {
-    fetch(`/getCommieInfo/${COMM_ID}`).then(
+    fetch(`/getAnalyticsState/${CAND_ID}`).then(
       response => response.json()
     ).then(
       data => { 
-        setPageTotal(Math.floor(data.Item.committeeTable.length / 10) + ((data.Item.committeeTable.length % 10) ? 1 : 0));
-        setTableItems(data.Item.committeeTable);
+        setPageTotal(Math.floor(data.Item.stateTable.length / 10) + ((data.Item.stateTable.length % 10) ? 1 : 0));
+        setTableItems(data.Item.stateTable);
       }
     )
-  }, [COMM_ID]);
+  }, [CAND_ID]);
   
   // pagination: updates the current 10 of all items to display
   useEffect(() => {
@@ -43,21 +43,18 @@ const CommieTable: React.FC<CommieTableProps> = ({
   }, [curryPage, tableItems]);
 
   const resourceName = {
-    singular: 'candidate',
-    plural: 'candidates',
+    singular: 'Top State donor',
+    plural: 'Top State donors',
   };
 
   // sets the current table items
   const rowMarkup = curryItems && curryItems.map(
     (
       {
-        CAND_ID,
-        CAND_NAME,
-        CAND_OFFICE,
-        CAND_OFFICE_DISTRICT,
-        CAND_OFFICE_ST,
-        CAND_PTY_AFFILIATION,
-        DONATION_AMT
+        COMMITTEE,
+        INDIVIDUAL,
+        STATE,
+        TOTAL,
       }, index
     ) => (
       <IndexTable.Row
@@ -66,17 +63,15 @@ const CommieTable: React.FC<CommieTableProps> = ({
         position={index}
       >
         <IndexTable.Cell>{index + 1 + (curryPage * 10 - 10)}</IndexTable.Cell>
-        <IndexTable.Cell>{'$' + DONATION_AMT}</IndexTable.Cell>
+        <IndexTable.Cell>{'$' + TOTAL}</IndexTable.Cell>
 
         {/* TODO: Link to analytics page for this candidate */}
         <IndexTable.Cell>
-          <TextStyle variation="strong">{CAND_NAME}</TextStyle>
+          <TextStyle variation="strong">{STATE}</TextStyle>
         </IndexTable.Cell>
 
-        <IndexTable.Cell>{CAND_PTY_AFFILIATION}</IndexTable.Cell>
-        <IndexTable.Cell>{CAND_OFFICE}</IndexTable.Cell>
-        <IndexTable.Cell>{CAND_OFFICE_ST}</IndexTable.Cell>
-        <IndexTable.Cell>{CAND_OFFICE_DISTRICT}</IndexTable.Cell>
+        <IndexTable.Cell>{'$' + INDIVIDUAL}</IndexTable.Cell>
+        <IndexTable.Cell>{'$' + COMMITTEE}</IndexTable.Cell>
       </IndexTable.Row>
     ),
   );
@@ -84,20 +79,20 @@ const CommieTable: React.FC<CommieTableProps> = ({
   // if table is empty
   const emptyStateMarkup = (
     <EmptySearchResult
-      title={'No candidate found'}
-      description={'Committee did not donate within the select timeframe.'}
+      title={'No state found'}
+      description={'Nobody donated :('}
     />
   );
 
   return (
-    <Box background="surface-hovered-dark" borderRadius="2" padding="3" shadow="card">
+    <Box background="surface-hovered-dark" borderRadius="2" paddingTop="3" shadow="card">
       <Card>
         <Box padding="3">
           <Stack>
             <Stack.Item fill>
               <Heading>
                 <Text variant="headingXl" as="h1" truncate>
-                    Candidates ({tableItems ? tableItems.length : 0})
+                    Top state donors ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>
             </Stack.Item>
@@ -123,12 +118,10 @@ const CommieTable: React.FC<CommieTableProps> = ({
           emptyState={emptyStateMarkup}
           headings={[
             {title: 'Rank'},
-            {title: 'Donations'},
-            {title: 'Name'},
-            {title: 'Party'},
-            {title: 'Office'},
+            {title: 'Total donations'},
             {title: 'State'},
-            {title: 'District'},
+            {title: 'Individual donations'},
+            {title: 'Committee donations'},
           ]}
           loading={!tableItems}
         >
@@ -139,4 +132,4 @@ const CommieTable: React.FC<CommieTableProps> = ({
   );
 }
 
-export default CommieTable;
+export default AnalyticsStateTable;

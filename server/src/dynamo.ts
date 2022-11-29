@@ -74,10 +74,10 @@ export const getCommieMaster = async (COMM_ID: string) => {
   return await dynamoClient.get(params).promise();
 };
 
-export const getCandidateMaster = async (CID: string) => {
+export const getCandidateMaster = async (CAND_ID: string) => {
   const params = {
     TableName: "DoraTheExplorerTable",
-    Key: { CID },
+    Key: { CAND_ID },
   };
   return await dynamoClient.get(params).promise();
 };

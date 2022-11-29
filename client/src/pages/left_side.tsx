@@ -24,6 +24,7 @@ interface LeftProps {
 }
 
 const Left: React.FC<LeftProps> = ({id, flag}) => {
+  const [Competitor, setCompetitor] = useState<string>('');
 
   return (
     <Stack.Item>
@@ -31,7 +32,7 @@ const Left: React.FC<LeftProps> = ({id, flag}) => {
       {(flag === 'competitor') && <Title id={id} flag={flag}/>}
       <Card>
       {(flag === 'commie') && <CommieTable COMM_ID={id} />}
-      {(flag === 'competitor') && <CompetitorTable COMP_ID={id}/>}
+      {(flag === 'competitor') && <CompetitorTable COMP_ID={id} CAND_ID={id} getCompetitorID={setCompetitor} />}
       </Card>
     </Stack.Item>
   );

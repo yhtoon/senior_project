@@ -14,30 +14,31 @@ import {
   
   import {CAND_INFO} from 'types';
 
-  
+  type cand = "cand" | "comp";
+
   interface CandInfoProps {
-    COMP_ID: string
+    id: string,
+    cand_type: cand,
   }
 
   //check be for this 
-  const CandInfo: React.FC<CandInfoProps> = (COMP_ID) => {
+  const CandInfo: React.FC<CandInfoProps> = ({id, cand_type}) => {
 
     const [CandidateMaster, setCandidateMaster] = useState<CAND_INFO>();
 
     useEffect(() => {
-      fetch(`/getCandidateMaster/${COMP_ID}`).then(
+      fetch(`/getCandidateMaster/${id}`).then(
         response => response.json()
       ).then(
         data => { 
           setCandidateMaster(data.Item);
         }
       )
-    }, [COMP_ID]);
-
+    }, [id]); 
     return (
         <Card>
           <Text variant="headingMd" as="h6">
-            Candidate Information
+          {(cand_type === 'cand') ? "Candidate Information" : "Competitor Information"}
           </Text>
           <Card.Section>
             <Text variant="headingSm" as="h6">

@@ -15,12 +15,14 @@ import {
   import Right from "../../pages/right_side";
 
 type name = "commie" | "competitor";
+type cand = "cand" | "comp";
 interface ModalProps {
   id: string
   flag: name
+  cand_type: cand
 }
 
-const ModalInfo: React.FC<ModalProps> = ({ id, flag }) => {
+const ModalInfo: React.FC<ModalProps> = ({ id, flag, cand_type }) => {
   const [active, setActive] = useState(true);
   const [checked, setChecked] = useState(false);
   // const [CommieMaster, setCommieMaster] = useState<CommieInfoModal>();
@@ -30,7 +32,7 @@ const ModalInfo: React.FC<ModalProps> = ({ id, flag }) => {
 
   //const handleCheckbox = useCallback((value) => setChecked(value), []);
 
-  const activator = <Button onClick={toggleActive}>Open</Button>;
+  const activator = <Button fullWidth onClick={toggleActive}>View Competitor Analysis</Button>;
 
   return (
     <div style={{ height: "500px" }}>
@@ -45,7 +47,7 @@ const ModalInfo: React.FC<ModalProps> = ({ id, flag }) => {
         <Modal.Section>
           <Stack wrap={false} distribution="fillEvenly">
             <Left id={id} flag={flag}/>
-            <Right id={id} flag={flag}/>
+            <Right id={id} flag={flag} cand_type={cand_type}/>
           </Stack>
         </Modal.Section>
       </Modal>

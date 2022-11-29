@@ -16,7 +16,7 @@ import {
 
   
   interface CommieInfoProps {
-    COMM_ID: string
+    COMM_ID: string,
   }
 
   const CommieInfo: React.FC<CommieInfoProps> = ({COMM_ID}) => {
@@ -32,6 +32,8 @@ import {
         }
       )
     }, [COMM_ID]);
+
+
 //data is response and item holds whats from response - note forself 
     return (
       <Stack.Item>         
