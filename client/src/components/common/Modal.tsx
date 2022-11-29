@@ -39,7 +39,7 @@ const ModalInfo: React.FC<ModalProps> = ({ id, flag, cand_type }) => {
       <Modal
         large
         activator={activator}
-        open={active}
+        open={!active}
         onClose={toggleActive}
         title={(flag === 'commie' ? "Committee Info" : "Competitor Analysis")}
 
