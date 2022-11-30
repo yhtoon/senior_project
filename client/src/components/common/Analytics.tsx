@@ -16,7 +16,8 @@ import {
 import ModalInfo from "./Modal";
 
 interface AnalyticsProps {
-  CAND_ID: string
+  CAND_ID: string,
+  
 }
 
 const AnalyticsPg: React.FC<AnalyticsProps> = ({CAND_ID}) => {
@@ -51,7 +52,7 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({CAND_ID}) => {
       </Stack.Item>
       <Stack.Item>
       <AnalyticsTable CAND_ID={CAND_ID}/>
-<ModalInfo id={CAND_ID} flag="competitor" cand_type="cand"/>
+<ModalInfo id={CAND_ID} flag="competitor" COMP_ID={CandidateMaster ? (CandidateMaster.CAND_ELECTION_YR+ CandidateMaster.CAND_OFFICE + CandidateMaster.CAND_OFFICE_ST + CandidateMaster.CAND_OFFICE_DISTRICT)  : ""} cand_type="cand" />
       </Stack.Item>
           </Stack>
       
