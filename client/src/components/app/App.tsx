@@ -13,7 +13,6 @@ const App: React.FC = () => {
   const [candidate, setCandidate] = useState<string>('');
   const [committee, setCommittee] = useState<string>('');
 
-
   return <AppProvider i18n={enTranslations}>
     
     {/* <ModalInfo id="C00545236" flag="commie"/> */}

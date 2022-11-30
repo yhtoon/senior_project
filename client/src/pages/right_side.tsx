@@ -29,7 +29,6 @@ const Right: React.FC<RightProps> = ({id, flag, cand_type, COMP_ID}) => {
       <Card>
         <TextContainer spacing="loose">
           
-          
         </TextContainer>
       </Card>(
       {COMP_ID && <><CandInfo id={id} cand_type={'cand'} /><CandInfo id={COMP_ID} cand_type={'comp'} /></>}

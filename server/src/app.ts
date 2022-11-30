@@ -17,7 +17,6 @@ import { CommieInfoResponse, CompetitorResponse, CommieInfoModal, CAND_INFO, Ana
 // npm run dev => runs app in /src
 // npm run build => compiles /src .ts files to .js in /dist
 // npm start => runs app in /dist
-
 const app: Application = express();
 
 // call commie table

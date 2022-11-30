@@ -91,6 +91,5 @@ import {
         </Card>
     );
   };
-  
   export default CandInfo;
   

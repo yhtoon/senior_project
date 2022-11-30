@@ -34,6 +34,7 @@ import {
     }, [COMM_ID]);
 
 
+    
 //data is response and item holds whats from response - note forself 
     return (
       <Stack.Item>         

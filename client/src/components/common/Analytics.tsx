@@ -58,6 +58,6 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({CAND_ID}) => {
       
     </div>
   );
-};
+  }
 
 export default AnalyticsPg;
