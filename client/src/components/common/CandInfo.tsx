@@ -62,13 +62,14 @@ import {
                 Candidate District
               </Text>
               <p>
+              <p>{CandidateMaster ? (CandidateMaster.CAND_OFFICE_DISTRICT)  : ""}</p>
               <Text variant="headingSm" as="h6">
                 Candidate Location
               </Text>
             </p>
             <p>{CandidateMaster ? (CandidateMaster.CAND_OFFICE_ST)  : ""}</p>
             </p>
-            <p>{CandidateMaster ? (CandidateMaster.CAND_OFFICE_DISTRICT)  : ""}</p><p>
+            <p>
               <Text variant="headingSm" as="h6">
                 Year of Election
               </Text>

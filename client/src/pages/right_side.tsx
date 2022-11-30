@@ -20,9 +20,10 @@ interface RightProps {
   id: string
   flag: name
   cand_type: cand
+  COMP_ID?: string
 }
 
-const Right: React.FC<RightProps> = ({id, flag, cand_type}) => {
+const Right: React.FC<RightProps> = ({id, flag, cand_type, COMP_ID}) => {
   return (
     <Stack.Item>
       <Card>
@@ -30,10 +31,12 @@ const Right: React.FC<RightProps> = ({id, flag, cand_type}) => {
           
           
         </TextContainer>
-      </Card>
-      {(flag === 'commie') && <CommieInfo COMM_ID={id}/>}
+      </Card>(
+      {COMP_ID && <><CandInfo id={id} cand_type={'cand'} /><CandInfo id={COMP_ID} cand_type={'comp'} /></>}
+      {!COMP_ID && <CommieInfo COMM_ID={id}/>}
+      {/* {(flag === 'commie') && <CommieInfo COMM_ID={id}/>}
       {(flag === 'competitor') && <CandInfo id={id} cand_type={'cand'}/> }
-      {(flag === 'competitor') && <CandInfo id={id} cand_type={'comp'}/> }
+      {(flag === 'competitor') && <CandInfo id={id} cand_type={'comp'}/> } */}
       
     </Stack.Item>
   );

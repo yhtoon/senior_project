@@ -17,7 +17,7 @@ const App: React.FC = () => {
   return <AppProvider i18n={enTranslations}>
     
     {/* <ModalInfo id="C00545236" flag="commie"/> */}
-    <AnalyticsPg CAND_ID="C00545236"/>
+    <AnalyticsPg CAND_ID="C00545236" />
   </AppProvider>;
 }
 

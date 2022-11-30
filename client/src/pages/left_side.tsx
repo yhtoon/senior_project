@@ -21,6 +21,8 @@ type name = "commie" | "competitor";
 interface LeftProps {
   id: string
   flag: name
+  getCompetitorID: Function
+  COMP_ID?:string
 }
 
 const Left: React.FC<LeftProps> = ({id, flag}) => {

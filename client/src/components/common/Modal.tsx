@@ -20,14 +20,15 @@ interface ModalProps {
   id: string
   flag: name
   cand_type: cand
+  COMP_ID? : string
 }
 
-const ModalInfo: React.FC<ModalProps> = ({ id, flag, cand_type }) => {
+const ModalInfo: React.FC<ModalProps> = ({ id, flag, cand_type, COMP_ID}) => {
   const [active, setActive] = useState(true);
   const [checked, setChecked] = useState(false);
   // const [CommieMaster, setCommieMaster] = useState<CommieInfoModal>();
 
-  
+  const [Competitor, setCompetitor] = useState<string>('');
   const toggleActive = useCallback(() => setActive((active) => !active), []);
 
   //const handleCheckbox = useCallback((value) => setChecked(value), []);
@@ -46,8 +47,8 @@ const ModalInfo: React.FC<ModalProps> = ({ id, flag, cand_type }) => {
       >
         <Modal.Section>
           <Stack wrap={false} distribution="fillEvenly">
-            <Left id={id} flag={flag}/>
-            <Right id={id} flag={flag} cand_type={cand_type}/>
+            <Left id={id} flag={flag} getCompetitorID={setCompetitor} COMP_ID={COMP_ID}/>
+            <Right id={id} flag={flag} cand_type={cand_type} COMP_ID={COMP_ID} />
           </Stack>
         </Modal.Section>
       </Modal>

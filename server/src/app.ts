@@ -12,7 +12,7 @@ import express, {
   Request,
   Response,
 } from 'express';
-import { CommieInfoResponse, CompetitorResponse, CommieInfoModal, CAND_INFO } from 'types';
+import { CommieInfoResponse, CompetitorResponse, CommieInfoModal, CAND_INFO, AnalyticsCommieResponse, AnalyticsIndividualResponse, AnalyticsStateResponse } from 'types';
 
 // npm run dev => runs app in /src
 // npm run build => compiles /src .ts files to .js in /dist
@@ -21,6 +21,41 @@ import { CommieInfoResponse, CompetitorResponse, CommieInfoModal, CAND_INFO } fr
 const app: Application = express();
 
 // call commie table
+app.get('/getAnalyticsCommie/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const response: AnalyticsCommieResponse = await getAnalyticsCommieTable(id);
+    res.json(response);
+    console.log(JSON.stringify(response))
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+
+app.get('/getAnalyticsIndividual/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const response: AnalyticsIndividualResponse = await getAnalyticsIndividualTable(id);
+    res.json(response);
+    console.log(JSON.stringify(response))
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+
+app.get('/getAnalyticsState/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const response: AnalyticsStateResponse = await getAnalyticsStateTable(id);
+    res.json(response);
+    console.log(JSON.stringify(response))
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
 
 app.get('/getCommieInfo/:id', async (req: Request, res: Response) => {
   const id: string = req.params.id;
@@ -40,6 +75,18 @@ app.get('/getCommieMaster/:id', async (req: Request, res: Response) => {
     const committees: CommieInfoModal = await getCommieMaster(id);
     res.json(committees);
     console.log(JSON.stringify(committees))
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+
+app.get('/getCompetitor/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const response: CompetitorResponse = await getCompetitorTable(id);
+    res.json(response);
+    console.log(JSON.stringify(response))
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });
