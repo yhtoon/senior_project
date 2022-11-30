@@ -33,6 +33,7 @@ const ModalInfo: React.FC<ModalProps> = ({ id, flag, cand_type, COMP_ID}) => {
 
   //const handleCheckbox = useCallback((value) => setChecked(value), []);
 
+  
   const activator = <Button fullWidth onClick={toggleActive}>View Competitor Analysis</Button>;
 
   return (

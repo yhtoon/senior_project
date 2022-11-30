@@ -9,7 +9,7 @@ import CompetitorTable from '../competitor/CompetitorTable';
 import ModalInfo from '../common/Modal'
 import AnalyticsPg from '../common/Analytics'
 const App: React.FC = () => {
-
+ 
   const [candidate, setCandidate] = useState<string>('');
   const [committee, setCommittee] = useState<string>('');
 
@@ -17,7 +17,7 @@ const App: React.FC = () => {
   return <AppProvider i18n={enTranslations}>
     
     {/* <ModalInfo id="C00545236" flag="commie"/> */}
-    <AnalyticsPg CAND_ID="C00545236" />
+    <AnalyticsPg CAND_ID="H2AZ09191" />
   </AppProvider>;
 }
 
