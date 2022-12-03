@@ -13,6 +13,9 @@ export type state = string;
 export type heatmap = number[];
 export type year = string;
 export type zipcode = string;
+export type design = string;
+export type org = string;
+export type cmttp = string;
 
 // table schemas
 export interface analyticsCommieItem {
@@ -89,6 +92,37 @@ export interface AnalyticsStateResponse {
 export interface CommieInfoResponse {
   COMM_ID: id,
   committeeTable: commieInfoItem[],
+}
+
+export interface CommieInfoModal {
+  COMM_ID: id,
+  CMTE_NM: name, 
+  TRES_NM: name, 
+  CMTE_CITY: city, 
+  CMTE_ST: state, 
+  CMTE_DSGN: design, 
+  CMTE_TP: cmttp, 
+  CMTE_PTY_AFFILIATION: party, 
+  ORG_TP: org,
+  CONNECTED_ORG_NM: name, 
+}
+
+export interface CAND_INFO {
+  CAND_ID: id,
+  CAND_NAME: name,
+  CAND_ICI: ici,
+  CAND_OFFICE_ST: state,
+  CAND_PCC: id, 
+  CAND_OFFICE: office,
+  CAND_OFFICE_DISTRICT: district, 
+  CAND_ELECTION_YR: year, 
+  CAND_PTY_AFFILIATION: party,
+}
+
+export interface doraResp {
+  info: {
+    [key: string]: CAND_INFO
+};
 }
 
 export interface CompetitorResponse {

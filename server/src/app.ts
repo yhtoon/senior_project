@@ -5,6 +5,8 @@ import {
   getCommieInfoTable,
   getCompetitorTable,
   getexploreFiltered,
+  getCommieMaster,
+  getCandidateMaster,
 } from "./dynamo";
 import express, {
   Application,
@@ -17,13 +19,14 @@ import {
   AnalyticsStateResponse,
   CommieInfoResponse,
   CompetitorResponse,
-  ExploreResponse
+  ExploreResponse,
+  CommieInfoModal,
+  CAND_INFO,
 } from 'types';
 
 // npm run dev => runs app in /src
 // npm run build => compiles /src .ts files to .js in /dist
 // npm start => runs app in /dist
-
 const app: Application = express();
 
 app.get('/getAnalyticsCommie/:id', async (req: Request, res: Response) => {
@@ -70,6 +73,17 @@ app.get('/getCommieInfo/:id', async (req: Request, res: Response) => {
   }
 });
 
+app.get('/getCommieMaster/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const committees: CommieInfoModal = await getCommieMaster(id);
+    res.json(committees);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+
 app.get('/getCompetitor/:id', async (req: Request, res: Response) => {
   const id: string = req.params.id;
   try {
@@ -86,6 +100,16 @@ app.get('/getExplore/:id', async (req: Request, res: Response) => {
   try {
     const response: ExploreResponse = await getexploreFiltered(id);
     res.json(response);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+app.get('/getCandidateMaster/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const candidate: CAND_INFO = await getCandidateMaster(id);
+    res.json(candidate);
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });

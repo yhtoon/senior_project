@@ -10,9 +10,17 @@ import {
   Text,
 } from '@shopify/polaris';
 import ExploreActions from '../explore/ExploreActions';
+import AnalyticsPg from '../common/Analytics'
 
 const App: React.FC = () => {
-  const [candId, setCandId] = useState<string>('');
+  const [candId, setCandId] = useState<string>(''); 
+  
+  /*
+    H2AZ09191
+    Arizona
+    House 4
+    Kelly Cooper
+  */
 
   useEffect(() => {
     console.log(candId)
@@ -47,6 +55,10 @@ const App: React.FC = () => {
           />
         </Stack.Item>
       </Stack>
+    }
+    {
+      (candId !== '') &&
+      <AnalyticsPg CAND_ID={candId} setCandId={setCandId} />
     }
   </AppProvider>;
 }
