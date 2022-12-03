@@ -2,6 +2,7 @@
 export type city = string;
 export type district = string;
 export type entity = string;
+export type ici = string;
 export type id = string;
 export type green = number;
 export type name = string;
@@ -10,6 +11,7 @@ export type office = string;
 export type party = string;
 export type state = string;
 export type heatmap = number[];
+export type year = string;
 export type zipcode = string;
 
 // table schemas
@@ -55,6 +57,17 @@ export interface competitorItem {
   INDIV: green,
 }
 
+export interface exploreItem {
+  CAND_ELECTION_YR: year,
+  CAND_ICI: ici,
+  CAND_ID: id,
+  CAND_NAME: name,
+  CAND_OFFICE: office,
+  CAND_OFFICE_DISTRICT: district,
+  CAND_OFFICE_ST: state,
+  CAND_PCC: id,
+}
+
 // DynamoDB API responses
 export interface AnalyticsCommieResponse {
   CAND_ID: id,
@@ -81,4 +94,9 @@ export interface CommieInfoResponse {
 export interface CompetitorResponse {
   COMP_ID: id,
   committeeTable: competitorItem[],
+}
+
+export interface ExploreResponse {
+  CID: id,
+  candidate: exploreItem[],
 }

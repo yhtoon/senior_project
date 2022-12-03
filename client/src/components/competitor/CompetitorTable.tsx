@@ -33,6 +33,7 @@ const CompetitorTable: React.FC<CompetitorTableProps> = ({
   
   // gets items to display from dynamoDB
   useEffect(() => {
+    setCurryPage(1);
     fetch(`/getCompetitor/${COMP_ID}`).then(
       response => response.json()
     ).then(
@@ -116,12 +117,12 @@ const CompetitorTable: React.FC<CompetitorTableProps> = ({
             <Stack.Item fill>
               <Heading>
                 <Text variant="headingXl" as="h1" truncate>
-                    Candidates ({tableItems ? tableItems.length : 0})
+                  Candidates ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>
             </Stack.Item>
             <Stack.Item>
-            <Select
+              <Select
                 label="Compare w/"
                 labelInline
                 disabled={tableItems ? tableItems.length < 1 : true}

@@ -27,6 +27,7 @@ const AnalyticsCommieTable: React.FC<AnalyticsCommieTableProps> = ({
   
   // gets items to display from dynamoDB
   useEffect(() => {
+    setCurryPage(1);
     fetch(`/getAnalyticsCommie/${CAND_ID}`).then(
       response => response.json()
     ).then(
@@ -90,7 +91,7 @@ const AnalyticsCommieTable: React.FC<AnalyticsCommieTableProps> = ({
             <Stack.Item fill>
               <Heading>
                 <Text variant="headingXl" as="h1" truncate>
-                    Top committee donors ({tableItems ? tableItems.length : 0})
+                  Top committee donors ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>
             </Stack.Item>

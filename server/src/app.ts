@@ -4,6 +4,7 @@ import {
   getAnalyticsStateTable,
   getCommieInfoTable,
   getCompetitorTable,
+  getexploreFiltered,
 } from "./dynamo";
 import express, {
   Application,
@@ -15,7 +16,8 @@ import {
   AnalyticsIndividualResponse,
   AnalyticsStateResponse,
   CommieInfoResponse,
-  CompetitorResponse
+  CompetitorResponse,
+  ExploreResponse
 } from 'types';
 
 // npm run dev => runs app in /src
@@ -29,7 +31,6 @@ app.get('/getAnalyticsCommie/:id', async (req: Request, res: Response) => {
   try {
     const response: AnalyticsCommieResponse = await getAnalyticsCommieTable(id);
     res.json(response);
-    console.log(JSON.stringify(response))
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });
@@ -41,7 +42,6 @@ app.get('/getAnalyticsIndividual/:id', async (req: Request, res: Response) => {
   try {
     const response: AnalyticsIndividualResponse = await getAnalyticsIndividualTable(id);
     res.json(response);
-    console.log(JSON.stringify(response))
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });
@@ -53,7 +53,6 @@ app.get('/getAnalyticsState/:id', async (req: Request, res: Response) => {
   try {
     const response: AnalyticsStateResponse = await getAnalyticsStateTable(id);
     res.json(response);
-    console.log(JSON.stringify(response))
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });
@@ -65,7 +64,6 @@ app.get('/getCommieInfo/:id', async (req: Request, res: Response) => {
   try {
     const response: CommieInfoResponse = await getCommieInfoTable(id);
     res.json(response);
-    console.log(JSON.stringify(response))
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });
@@ -77,7 +75,17 @@ app.get('/getCompetitor/:id', async (req: Request, res: Response) => {
   try {
     const response: CompetitorResponse = await getCompetitorTable(id);
     res.json(response);
-    console.log(JSON.stringify(response))
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+  }
+});
+
+app.get('/getExplore/:id', async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  try {
+    const response: ExploreResponse = await getexploreFiltered(id);
+    res.json(response);
   } catch (err) {
     console.error(err);
     res.status(500).json({ err: 'Something went wrong' });

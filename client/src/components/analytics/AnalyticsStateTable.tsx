@@ -27,6 +27,7 @@ const AnalyticsStateTable: React.FC<AnalyticsStateTableProps> = ({
   
   // gets items to display from dynamoDB
   useEffect(() => {
+    setCurryPage(1);
     fetch(`/getAnalyticsState/${CAND_ID}`).then(
       response => response.json()
     ).then(
@@ -92,7 +93,7 @@ const AnalyticsStateTable: React.FC<AnalyticsStateTableProps> = ({
             <Stack.Item fill>
               <Heading>
                 <Text variant="headingXl" as="h1" truncate>
-                    Top state donors ({tableItems ? tableItems.length : 0})
+                  Top state donors ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>
             </Stack.Item>

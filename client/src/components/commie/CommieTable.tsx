@@ -27,6 +27,7 @@ const CommieTable: React.FC<CommieTableProps> = ({
   
   // gets items to display from dynamoDB
   useEffect(() => {
+    setCurryPage(1);
     fetch(`/getCommieInfo/${COMM_ID}`).then(
       response => response.json()
     ).then(
@@ -97,7 +98,7 @@ const CommieTable: React.FC<CommieTableProps> = ({
             <Stack.Item fill>
               <Heading>
                 <Text variant="headingXl" as="h1" truncate>
-                    Candidates ({tableItems ? tableItems.length : 0})
+                  Candidates ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>
             </Stack.Item>

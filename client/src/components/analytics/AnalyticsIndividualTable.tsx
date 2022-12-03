@@ -27,6 +27,7 @@ const AnalyticsIndividualTable: React.FC<AnalyticsIndividualTableProps> = ({
   
   // gets items to display from dynamoDB
   useEffect(() => {
+    setCurryPage(1);
     fetch(`/getAnalyticsIndividual/${CAND_ID}`).then(
       response => response.json()
     ).then(
@@ -96,7 +97,7 @@ const AnalyticsIndividualTable: React.FC<AnalyticsIndividualTableProps> = ({
             <Stack.Item fill>
               <Heading>
                 <Text variant="headingXl" as="h1" truncate>
-                    Top individual donors ({tableItems ? tableItems.length : 0})
+                  Top individual donors ({tableItems ? tableItems.length : 0})
                 </Text>
               </Heading>
             </Stack.Item>
