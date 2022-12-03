@@ -10,8 +10,8 @@ import {
   Text,
   TextStyle,
 } from '@shopify/polaris';
-
 import {analyticsCommieItem} from 'types';
+import ModalInfo from '../common/Modal';
 
 interface AnalyticsCommieTableProps {
   CAND_ID: string,
@@ -51,6 +51,7 @@ const AnalyticsCommieTable: React.FC<AnalyticsCommieTableProps> = ({
   const rowMarkup = curryItems && curryItems.map(
     (
       {
+        CMTID_DONOR,
         CMTE_NM,
         ENTITY_TP,
         TOTAL,
@@ -66,7 +67,7 @@ const AnalyticsCommieTable: React.FC<AnalyticsCommieTableProps> = ({
 
         {/* TODO: Link to analytics page for this candidate */}
         <IndexTable.Cell>
-          <TextStyle variation="strong">{CMTE_NM}</TextStyle>
+          <ModalInfo id={CMTID_DONOR} flag="commie" name={CMTE_NM}/>
         </IndexTable.Cell>
 
         <IndexTable.Cell>{ENTITY_TP}</IndexTable.Cell>
