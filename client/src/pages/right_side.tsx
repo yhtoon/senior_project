@@ -1,29 +1,22 @@
 import {
-  Button,
-  Modal,
   Stack,
-  DropZone,
-  Checkbox,
-  Badge,
-  Text,
   Card,
-  DataTable,
   TextContainer
 } from "@shopify/polaris";
-import React, { useState, useCallback, useEffect } from "react";
 import CandInfo from "../components/common/CandInfo";
 import CommieInfo from "../components/common/CommieInfo";
 
-type name = "commie" | "competitor";
-type cand = "cand" | "comp";
 interface RightProps {
   id: string
-  flag: name
-  cand_type: cand
+  competitor?: boolean
   COMP_ID?: string
 }
 
-const Right: React.FC<RightProps> = ({id, flag, cand_type, COMP_ID}) => {
+const ModalRight: React.FC<RightProps> = ({
+  id,
+  competitor,
+  COMP_ID
+}) => {
   return (
     <Stack.Item>
       <Card>
@@ -31,14 +24,10 @@ const Right: React.FC<RightProps> = ({id, flag, cand_type, COMP_ID}) => {
           
         </TextContainer>
       </Card>
-      {COMP_ID && <><CandInfo id={id} cand_type={'cand'} /><CandInfo id={COMP_ID} cand_type={'comp'} /></>}
-      {!COMP_ID && <CommieInfo COMM_ID={id}/>}
-      {/* {(flag === 'commie') && <CommieInfo COMM_ID={id}/>}
-      {(flag === 'competitor') && <CandInfo id={id} cand_type={'cand'}/> }
-      {(flag === 'competitor') && <CandInfo id={id} cand_type={'comp'}/> } */}
-      
+      {competitor && COMP_ID && <CandInfo CAND_ID_A={id} CAND_ID_B={COMP_ID}/>}
+      {!competitor && !COMP_ID && <CommieInfo COMM_ID={id}/>}
     </Stack.Item>
   );
 };
 
-export default Right;
+export default ModalRight;

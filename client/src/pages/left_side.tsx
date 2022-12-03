@@ -1,18 +1,9 @@
 import {
-  Button,
-  Modal,
   Stack,
-  DropZone,
-  Checkbox,
-  Badge,
-  Text,
   Card,
-  DataTable,
-  TextContainer
 } from "@shopify/polaris";
 import Title from "../components/common/Title";
 import CompetitorTable from "../components/competitor/CompetitorTable";
-import React, { useState, useCallback, useEffect } from "react";
 import CommieTable from "../components/commie/CommieTable";
 
 type name = "commie" | "competitor";
@@ -24,18 +15,22 @@ interface LeftProps {
   COMP_ID?:string
 }
 
-const Left: React.FC<LeftProps> = ({id, flag, getCompetitorID, COMP_ID=''}) => {
-
+const ModalLeft: React.FC<LeftProps> = ({
+  id,
+  flag,
+  getCompetitorID,
+  COMP_ID=''
+}) => {
   return (
     <Stack.Item>
-      {(flag === 'commie') && <Title id={id} flag={flag} />}
-      {(flag === 'competitor') && <Title id={id} flag={flag}/>}
+        {(flag === 'commie') && <Title id={id} flag={flag} />}
+        {(flag === 'competitor') && <Title id={id} flag={flag}/>}
       <Card>
-      {(flag === 'commie') && <CommieTable COMM_ID={id} />}
-      {(flag === 'competitor') && <CompetitorTable COMP_ID={COMP_ID} CAND_ID={id} getCompetitorID={getCompetitorID} />}
+        {(flag === 'commie') && <CommieTable COMM_ID={id} />}
+        {(flag === 'competitor') && <CompetitorTable COMP_ID={COMP_ID} CAND_ID={id} getCompetitorID={getCompetitorID} />}
       </Card>
     </Stack.Item>
   );
 };
 
-export default Left;
+export default ModalLeft;

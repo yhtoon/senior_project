@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '@shopify/polaris/build/esm/styles.css'
 import enTranslations from '@shopify/polaris/locales/en.json';
 import {
   AppProvider,
 } from '@shopify/polaris';
-import CommieTable from '../commie/CommieTable';
-import CompetitorTable from '../competitor/CompetitorTable';
-import ModalInfo from '../common/Modal'
 import AnalyticsPg from '../common/Analytics'
 const App: React.FC = () => {
  
-  const [candidate, setCandidate] = useState<string>('');
-  const [committee, setCommittee] = useState<string>('');
+  const [candId, setCandId] = useState<string>('H2AZ09191');
 
   return <AppProvider i18n={enTranslations}>
-    
-    {/* <ModalInfo id="C00545236" flag="commie"/> */}
-    <AnalyticsPg CAND_ID="H2AZ09191" />
+    {
+      (candId !== '') &&
+      <AnalyticsPg CAND_ID={candId} setCandId={setCandId} />
+    }
   </AppProvider>;
 }
 
