@@ -1,43 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import { testResponse } from 'types';
 import '@shopify/polaris/build/esm/styles.css'
 import enTranslations from '@shopify/polaris/locales/en.json';
 import {
-  AlphaStack,
   AppProvider,
+  Box,
+  Card,
+  List,
   Stack,
+  Text,
 } from '@shopify/polaris';
-import Left from '../../pages/left_side';
-import Right from '../../pages/right_side';
+import ExploreActions from '../explore/ExploreActions';
+import AnalyticsPg from '../common/Analytics'
 
 const App: React.FC = () => {
+  const [candId, setCandId] = useState<string>(''); 
+  
+  /*
+    H2AZ09191
+    Arizona
+    House 4
+    Kelly Cooper
+  */
 
-  const [stuff, setStuff] = useState<testResponse>();
   useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setStuff(data);
-      }
-    )
-  }, []);
-
-  console.log(stuff);
+    console.log(candId)
+  }, [candId]);
 
   return <AppProvider i18n={enTranslations}>
-    <Stack wrap={false} distribution='fill'>
-      <Stack.Item fill>
-        <AlphaStack>
-          <Left></Left>
-        </AlphaStack>
-      </Stack.Item>
-      <Stack.Item>
-        <AlphaStack>
-          <Right></Right>
-        </AlphaStack>
-      </Stack.Item>
-    </Stack>
+    { 
+      (candId === '') && // Explore
+      <Stack wrap={false} distribution={'fill'}>
+        <Stack.Item fill>
+          <Box padding='3' paddingRight='0'>
+            <Card title={<Text variant='heading4xl' as='h1' fontWeight='regular'>EXPLORE</Text>}>
+              <Card.Section>
+                <List>
+                  <List.Item>Investigate funds raised by candidates running for office</List.Item>
+                  <List.Item>Explore respective candidate and committee affiliations along with their  information</List.Item>
+                  <List.Item>Visualize distribution and concentration of donations using Google Heatmap</List.Item>
+                </List>
+              </Card.Section>
+              <Card.Section title={<Text variant='bodyLg' as='h1' fontWeight='semibold'>INSTRUCTIONS</Text>}>
+                <List type='number'>
+                  <List.Item>Satisfy filters to search for candidate.</List.Item>
+                  <List.Item>Click on candidate name to investigate.</List.Item>
+                </List>
+              </Card.Section>
+            </Card>
+          </Box>
+        </Stack.Item>
+        <Stack.Item>
+          <ExploreActions
+            getCandId={setCandId}
+          />
+        </Stack.Item>
+      </Stack>
+    }
+    {
+      (candId !== '') &&
+      <AnalyticsPg CAND_ID={candId} setCandId={setCandId} />
+    }
   </AppProvider>;
 }
 

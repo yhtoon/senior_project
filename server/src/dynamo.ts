@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+
 require('dotenv').config();
 
 AWS.config.update({
@@ -33,9 +34,9 @@ export const getAnalyticsStateTable = async (CAND_ID: string) => {
   return await dynamoClient.get(params).promise();
 };
 
-export const getCommitteeInfoTable = async (COMM_ID: string) => {
+export const getCommieInfoTable = async (COMM_ID: string) => {
   const params = {
-    TableName: "CommitteeInfoTable",
+    TableName: "CommieInfoTable",
     Key: { COMM_ID },
   };
   return await dynamoClient.get(params).promise();
@@ -61,6 +62,22 @@ export const getexploreFiltered = async (CID: string) => {
   const params = {
     TableName: "exploreFiltered",
     Key: { CID },
+  };
+  return await dynamoClient.get(params).promise();
+};
+
+export const getCommieMaster = async (COMM_ID: string) => {
+  const params = {
+    TableName: "CommunistParty",
+    Key: { COMM_ID },
+  };
+  return await dynamoClient.get(params).promise();
+};
+
+export const getCandidateMaster = async (CAND_ID: string) => {
+  const params = {
+    TableName: "DoraTheExplorerTable",
+    Key: { CAND_ID },
   };
   return await dynamoClient.get(params).promise();
 };
