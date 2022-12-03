@@ -39,7 +39,7 @@ const CompetitorTable: React.FC<CompetitorTableProps> = ({
     ).then(
       data => { 
         setPageTotal(Math.floor(data.Item.competitors.length / 10) + ((data.Item.competitors.length % 10) ? 1 : 0));
-        setTableItems(data.Item.competitors);
+        setTableItems(data.Item.competitors.sort((a: competitorItem, b: competitorItem) => a.INDIV + a.COMMIE > b.INDIV + b.COMMIE ? -1 : a.INDIV + a.COMMIE < b.INDIV + b.COMMIE ? 1 : 0));
       }
     );
   }, [COMP_ID]);
@@ -79,12 +79,9 @@ const CompetitorTable: React.FC<CompetitorTableProps> = ({
       >
         <IndexTable.Cell>{index + 1 + (curryPage * 10 - 10)}</IndexTable.Cell>
         <IndexTable.Cell>{'$' + (COMMIE + INDIV)}</IndexTable.Cell>
-
-        {/* TODO: Link to analytics page for this candidate */}
         <IndexTable.Cell>
           <TextStyle variation="strong">{CAND_NAME}</TextStyle>
         </IndexTable.Cell>
-
         <IndexTable.Cell>{CAND_PTY_AFFILIATION}</IndexTable.Cell>
         <IndexTable.Cell>{'$' + INDIV}</IndexTable.Cell>
         <IndexTable.Cell>{'$' + COMMIE}</IndexTable.Cell>

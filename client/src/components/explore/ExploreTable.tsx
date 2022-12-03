@@ -9,12 +9,11 @@ import {
   Pagination,
   Stack,
   Text,
-  TextStyle,
 } from '@shopify/polaris';
 
 import {exploreItem} from 'types';
 import Filter from '../common/Filter';
-import { ICIKeys, PartyKeys } from '../../constants/abbreviationKeys';
+import { ICIKeys } from '../../constants/abbreviationKeys';
 import {
   CandIciMap,
   OfficeMap,
