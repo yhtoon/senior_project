@@ -11,7 +11,7 @@ export const StateMap = new Map<string, string>([[ 'AL', 'Alabama'], ['AK', 'Ala
         ['OR', 'Oregon'], ['PA', 'Pennsylvania'], ['PR', 'Puerto Rico'], ['RI', 'Rhode Island'], ['SC', 'South Carolina'],
         ['SD', 'South Dakota'], ['TN', 'Tennessee'], ['TX', 'Texas'], ['UT', 'Utah'], ['VT', 'Vermont'],
         ['VA', 'Virginia'], ['VI', 'Virgin Islands'], ['WA', 'Washington'], ['WV', 'West Virginia'], ['WI', 'Wisconsin'],
-        ['WT', 'Wyoming']]);
+        ['WY', 'Wyoming']]);
 
 export const EntityMap = new Map<string, string>([['CAN', 'Candidate'], ['CCM', 'Candidate Committee Master'], ['COM', 'Committee'],
         ['IND', 'Individual'], ['ORG', 'Organization'], ['PAC', 'Political Action Committee'], ['PTY', 'Party Organization']]);
