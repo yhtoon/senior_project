@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   Box,
   Select,
@@ -10,12 +10,18 @@ import AnalyticsStateTable from './AnalyticsStateTable';
 
 interface AnalyticsTableProps {
   CAND_ID: string,
+  getTableType: Function, 
 }
 
 const AnalyticsTable: React.FC<AnalyticsTableProps> = ({
   CAND_ID,
+  getTableType,
 }) => {
   const [selected, setSelected] = useState<string>('i');
+
+  useEffect(() => {
+    getTableType(selected)
+  }, [selected]);
 
   const handleSelectChange = useCallback((value: string) => setSelected(value), []);
 
@@ -25,6 +31,7 @@ const AnalyticsTable: React.FC<AnalyticsTableProps> = ({
     {label: 'State', value: 's'},
   ];
 
+  
   return (
     <Box background="surface-hovered-dark" borderRadius="2" padding="3" shadow="card">
       <Select
@@ -37,8 +44,8 @@ const AnalyticsTable: React.FC<AnalyticsTableProps> = ({
       {
         (selected === 'i') && 
           <AnalyticsIndividualTable
-            CAND_ID={CAND_ID}
-          />
+          CAND_ID={CAND_ID} />
+          
       }
       {
         (selected === 'c') && 
@@ -53,6 +60,7 @@ const AnalyticsTable: React.FC<AnalyticsTableProps> = ({
           />
       }
     </Box>
+    
   );
 }
 
