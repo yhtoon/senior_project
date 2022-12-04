@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '@shopify/polaris/build/esm/styles.css'
 import enTranslations from '@shopify/polaris/locales/en.json';
 import {
@@ -11,11 +11,10 @@ import {
 } from '@shopify/polaris';
 import ExploreActions from '../explore/ExploreActions';
 import AnalyticsPg from '../common/Analytics'
-import Map from "../common/Map0"
 
 const App: React.FC = () => {
-  const [candId, setCandId] = useState<string>(''); 
-  
+  const [candId, setCandId] = useState<string>('');
+
   /*
     H2AZ09191
     Arizona
@@ -23,20 +22,11 @@ const App: React.FC = () => {
     Kelly Cooper
   */
 
-  useEffect(() => {
-    console.log(candId)
-  }, [candId]);
-
-  // return (
-  //   <Map id={''} />
-  // )
   return <AppProvider i18n={enTranslations}>
-    { 
-    
+    {
       (candId === '') && // Explore
       <Stack wrap={false} distribution={'fill'}>
         <Stack.Item fill>
-        
           <Box padding='3' paddingRight='0'>
             <Card title={<Text variant='heading4xl' as='h1' fontWeight='regular'>EXPLORE</Text>}>
               <Card.Section>
@@ -56,7 +46,6 @@ const App: React.FC = () => {
           </Box>
         </Stack.Item>
         <Stack.Item>
-        <AnalyticsPg CAND_ID={candId} setCandId={setCandId} />
           <ExploreActions
             getCandId={setCandId}
           />

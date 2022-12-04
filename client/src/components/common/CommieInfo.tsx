@@ -3,7 +3,7 @@ import {
   Text,
   Card,
 } from "@shopify/polaris";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {CommieInfoModal} from 'types';
   
 interface CommieInfoProps {
@@ -14,7 +14,7 @@ const CommieInfo: React.FC<CommieInfoProps> = ({
   COMM_ID
 }) => {
   const [CommieMaster, setCommieMaster] = useState<CommieInfoModal>();
-
+  console.log('a')
   useEffect(() => {
     fetch(`/getCommieMaster/${COMM_ID}`).then(
       response => response.json()

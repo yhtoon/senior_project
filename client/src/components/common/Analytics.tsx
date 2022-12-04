@@ -36,10 +36,7 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({
       }
     )
   }, [CAND_ID]);
-  console.log(HeatMapMode)
   return (
-    <Box> 
-      {/* <Map id={CAND_ID}/> */}
     <Stack wrap={false} distribution="fill">
       <Stack.Item>
         <Box padding="3">
@@ -68,7 +65,8 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({
             </Box>
           </Card>
           <Card>
-            <Map CAND_ID={CAND_ID} heattype={HeatMapMode}/>
+            {(HeatMapMode === 'i') && <Map CAND_ID={CAND_ID} heattype={'i'}/>}
+            {(HeatMapMode === 'c') && <Map CAND_ID={CAND_ID} heattype={'c'}/>}
           </Card>
         </Box>
       </Stack.Item>
@@ -79,12 +77,7 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({
           <ModalInfo id={CAND_ID} flag="competitor" COMP_ID={CandidateMaster ? (CandidateMaster.CAND_ELECTION_YR+ CandidateMaster.CAND_OFFICE + CandidateMaster.CAND_OFFICE_ST + CandidateMaster.CAND_OFFICE_DISTRICT)  : ""}/>
         </Box>
       </Stack.Item>
-      
-      
-
-     
     </Stack>
-    </Box>
   );
 }
 
