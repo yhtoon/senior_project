@@ -13,7 +13,7 @@ import ExploreActions from '../explore/ExploreActions';
 import AnalyticsPg from '../common/Analytics'
 
 const App: React.FC = () => {
-  const [candId, setCandId] = useState<string>('');
+  const [candId, setCandId] = useState<string>('H2AZ09191');
 
   /*
     H2AZ09191
