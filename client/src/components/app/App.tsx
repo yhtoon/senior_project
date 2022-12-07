@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '@shopify/polaris/build/esm/styles.css'
 import enTranslations from '@shopify/polaris/locales/en.json';
 import {
@@ -13,8 +13,8 @@ import ExploreActions from '../explore/ExploreActions';
 import AnalyticsPg from '../common/Analytics'
 
 const App: React.FC = () => {
-  const [candId, setCandId] = useState<string>(''); 
-  
+  const [candId, setCandId] = useState<string>('');
+
   /*
     H2AZ09191
     Arizona
@@ -22,12 +22,8 @@ const App: React.FC = () => {
     Kelly Cooper
   */
 
-  useEffect(() => {
-    console.log(candId)
-  }, [candId]);
-
   return <AppProvider i18n={enTranslations}>
-    { 
+    {
       (candId === '') && // Explore
       <Stack wrap={false} distribution={'fill'}>
         <Stack.Item fill>

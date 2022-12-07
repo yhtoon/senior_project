@@ -1,0 +1,79 @@
+{
+  "name": "rc-leaflet-heat",
+  "version": "1.0.0",
+  "description": "React HeatMap Component based on rc-leaflet",
+  "keywords": [
+    "typescript",
+    "react",
+    "leaflet",
+    "leaflet.heat",
+    "heatmap",
+    "rc-leaflet"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es"
+  ],
+  "sideEffects": [
+    "dist/*",
+    "*.css"
+  ],
+  "scripts": {
+    "start": "parcel ./dev/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint -c ./.eslintrc.json ./src/index.tsx",
+    "umd": "rollup -c ./build/rollup.config.js",
+    "esm": "gulp --gulpfile ./build/gulpfile.js",
+    "build": "npm run eslint & npm run umd & npm run esm"
+  },
+  "pre-commit": "eslint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Coder-JJ/rc-leaflet-heat"
+  },
+  "author": {
+    "name": "CoderJ"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/leaflet": "^1.5.0",
+    "@types/prop-types": "^15.7.1",
+    "leaflet-heatmap": "^1.0.0",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "@types/webpack-env": "^1.13.9",
+    "delete": "^1.1.0",
+    "eslint": "^6.0.1",
+    "eslint-plugin-rc-leaflet": "^1.0.0",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^5.0.1",
+    "parcel-bundler": "^1.12.3",
+    "postcss-copy": "^7.1.0",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-preset-env": "^6.6.0",
+    "pre-commit": "^1.2.2",
+    "rc-leaflet": "^1.2.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rollup": "^1.12.3",
+    "rollup-plugin-delete": "^1.0.0",
+    "rollup-plugin-node-resolve": "^5.0.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.2",
+    "rollup-plugin-url": "^2.2.1",
+    "typescript": "^3.5.3"
+  },
+  "peerDependencies": {
+    "typescript": ">=3.5.1",
+    "rc-leaflet": ">=1.2.0"
+  }
+}

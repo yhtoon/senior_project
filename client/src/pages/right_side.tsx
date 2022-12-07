@@ -25,7 +25,7 @@ const ModalRight: React.FC<RightProps> = ({
         </TextContainer>
       </Card>
       {competitor && COMP_ID && <CandInfo CAND_ID_A={id} CAND_ID_B={COMP_ID}/>}
-      {!competitor && !COMP_ID && <CommieInfo COMM_ID={id}/>}
+      {!competitor && <CommieInfo COMM_ID={id}/>}
     </Stack.Item>
   );
 };

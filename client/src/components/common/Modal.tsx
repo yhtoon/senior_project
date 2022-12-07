@@ -41,7 +41,7 @@ const ModalInfo: React.FC<ModalProps> = ({
         <Modal.Section>
           <Stack wrap={false} distribution='fill'>
             <ModalLeft id={id} flag={flag} getCompetitorID={setCompetitor} COMP_ID={COMP_ID}/>
-            <ModalRight id={id} competitor COMP_ID={Competitor} />
+            <ModalRight id={id} competitor={flag === 'competitor'} COMP_ID={Competitor} />
           </Stack>
         </Modal.Section>
       </Modal>

@@ -13,6 +13,7 @@ import ModalInfo from "./Modal";
 import {
   ArrowLeftMinor
 } from '@shopify/polaris-icons';
+import Map from "../common/Map0"
 
 interface AnalyticsProps {
   CAND_ID: string,
@@ -24,8 +25,9 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({
   setCandId,
 }) => {
   const [CandidateMaster, setCandidateMaster] = useState<CAND_INFO>();
+  const [HeatMapMode, setHeatMapMode] = useState<string>("i");
 
-  useEffect(() => {
+    useEffect(() => {
     fetch(`/getCandidateMaster/${CAND_ID}`).then(
       response => response.json()
     ).then(
@@ -34,7 +36,6 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({
       }
     )
   }, [CAND_ID]);
-
   return (
     <Stack wrap={false} distribution="fill">
       <Stack.Item>
@@ -63,10 +64,15 @@ const AnalyticsPg: React.FC<AnalyticsProps> = ({
               </TextContainer>
             </Box>
           </Card>
+          <Card>
+            {(HeatMapMode === 'i') && <Map CAND_ID={CAND_ID} heattype={'i'}/>}
+            {(HeatMapMode === 'c') && <Map CAND_ID={CAND_ID} heattype={'c'}/>}
+          </Card>
         </Box>
       </Stack.Item>
       <Stack.Item>
-        <AnalyticsTable CAND_ID={CAND_ID}/>
+        <AnalyticsTable CAND_ID={CAND_ID} getTableType={setHeatMapMode}/>
+        
         <Box padding='3'>
           <ModalInfo id={CAND_ID} flag="competitor" COMP_ID={CandidateMaster ? (CandidateMaster.CAND_ELECTION_YR+ CandidateMaster.CAND_OFFICE + CandidateMaster.CAND_OFFICE_ST + CandidateMaster.CAND_OFFICE_DISTRICT)  : ""}/>
         </Box>
